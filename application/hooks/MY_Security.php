@@ -32,7 +32,6 @@ class MY_Security extends CI_Security {
             }
 
             if (!$this->csrf_token_match()) {
-                die('it does not match');
                 $this->csrf_show_error();
             }
 
@@ -54,15 +53,14 @@ class MY_Security extends CI_Security {
 
 
     /**
-     * Match the session value with the cookie. The session data will
-     * be avaialable only once
+     * Get the previous hash set by Security class
+     * right after initialization and store it in the session. The session
+     * will be reset after each POST request.
      * @return
      */
     public function csrf_match_cookie()
     {
-        if (!isset($_POST[$this->_csrf_token_name], $_COOKIE[$this->_csrf_cookie_name])) {
-            $this->_store_server_side_token($_COOKIE[$this->_csrf_cookie_name]);
-        }
+        $this->_store_server_side_token($this->CI->security->get_csrf_hash());
     }
 
 
