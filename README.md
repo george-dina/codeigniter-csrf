@@ -1,6 +1,7 @@
-Codeigniter 3 has an issue with CSRF validation if the request is intercepted and resubmitted. Basically, in each request, if the cookie and hidden CSRF post are the same, the request will be submitted.
+Codeigniter 3 has an issue with CSRF validation if the request is intercepted and resubmitted, in will go though instead of failing of second/third submit.
 
 In order to actually validate server side the value, in this example the CSRF token is stored in session and reset after the submit to prevent the above vulnerability.
+Extending the Security class with session support is not possible due to how the core loading functionality is built.
 
 #### 1. Add another  config parameter to allow extra configuration.
 In `application/config/config.php` add a new config option.
