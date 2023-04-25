@@ -11,10 +11,10 @@ $config['csrf_protection'] = true;
 
 2. Since CI3 cannot extend easily the Security class due to the moment when it's initialized, we will not be doing that fully, we will just validate another time the CSRF token against session data.
 
-2.1 Enable Hooks in  `application/config/config.php` 
+3. Enable Hooks in  `application/config/config.php` 
 > $config['enable_hooks'] = true;
 
-2.2. Define two new hooks:
+4. Define two new hooks:
 The one that will validate against the session will be initialized after the CI_Controller class is initialzed but before the construct finished executing.
 
 The other one will run before any system code is executed to prevent removing the CSRF token from $_POST (which is done in Security class, on csrf_verify call)
@@ -33,4 +33,5 @@ $hook['pre_system'][] = array(
   'filepath' => 'hooks'
 );
 ```
-3. Place the files from this repo in `application/hooks` folder
+
+5. Place the files from this repo in `application/hooks` folder
