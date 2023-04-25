@@ -10,7 +10,7 @@ In `application/config/config.php` add a new config option.
 ```php
 ... 
 $config['csrf_protection'] = true;
-**$config['real_csrf_protection'] = true;**
+$config['real_csrf_protection'] = true; // <-- take note of this extra non-standard config item
 ...
 ```
 
