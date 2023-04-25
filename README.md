@@ -13,6 +13,7 @@ $config['csrf_protection'] = true;
 $config['real_csrf_protection'] = true; // if not enabled, regular built in CI CSRF implementation will be used
 ...
 ```
+Both above settings needs to be set to true. The native CI security is used to generate the hash and to set the cookie.
 
 #### 2. Enable hooks
 In order to enable hooks, edit  `application/config/config.php` 
