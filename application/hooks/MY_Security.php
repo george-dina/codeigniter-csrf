@@ -44,7 +44,7 @@ class MY_Security extends CI_Security {
     protected function csrf_token_match()
     {
         // Retrieve the server-side token from session
-        $server_side_token = $this->_get_server_side_token();
+        $server_side_token = $this->CI->session->userdata('csrf_token');
 
         // Compare it with the submitted token
         // return $server_side_token === $input->post($this->_csrf_token_name);
@@ -60,19 +60,8 @@ class MY_Security extends CI_Security {
      */
     public function csrf_match_cookie()
     {
-        $this->_store_server_side_token($this->CI->security->get_csrf_hash());
-    }
-
-
-    private function _get_server_side_token()
-    {
-        return $this->CI->session->userdata('csrf_token');
-    }
-
-
-    private function _store_server_side_token($token)
-    {
-        $x = $this->CI->session->set_userdata('csrf_token', $token);
+        $token = $this->CI->security->get_csrf_hash();
+        $this->CI->session->set_userdata('csrf_token', $token);
     }
 
 
