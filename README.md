@@ -5,15 +5,19 @@ Extending the Security class with session support is not possible due to how the
 
 #### 1. Add another  config parameter to allow extra configuration.
 In `application/config/config.php` add a new config option.
->... 
+```php
+... 
 $config['csrf_protection'] = true;
 **$config['real_csrf_protection'] = true;**
 ...
+```
 
 #### 2. Enable hooks
 Since CI3 cannot extend easily the Security class due to the moment when it's initialized, we will not be doing that fully, we will just validate another time the CSRF token against session data.
  Enable Hooks in  `application/config/config.php` 
-> $config['enable_hooks'] = true;
+```php
+$config['enable_hooks'] = true;
+```
 
 #### 3. Define two new hooks:
 The one that will validate against the session will be initialized after the CI_Controller class is initialzed but before the construct finished executing.
