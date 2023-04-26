@@ -28,16 +28,17 @@ The other one (post_controller_constructor) that will validate against the sessi
 
 Add the following in `application/config/hooks.php`:
 ```php
-$hook['pre_system'][] = array(
-  'class' => 'MY_Preserve_post',
-  'function' => 'keep_csrf_fields',
-  'filename' => 'MY_Preserve_post',
-  'filepath' => 'hooks'
-);
 $hook['post_controller_constructor'][] = array(
   'class' => 'MY_Security',
   'function' => 'csrf_verify',
   'filename' => 'MY_Security.php',
+  'filepath' => 'hooks'
+);
+
+$hook['pre_system'][] = array(
+  'class' => 'MY_Preserve_post',
+  'function' => 'keep_csrf_fields',
+  'filename' => 'MY_Preserve_post.php',
   'filepath' => 'hooks'
 );
 ```
