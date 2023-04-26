@@ -26,6 +26,7 @@ One hook (pre_system) that will keep the initial $_POST data (at least the speci
 
 The other one (post_controller_constructor) that will validate against the session, this is is ran right after the controller construct is finished executing. At this time of execution Codeigniter has session access and can instantiate full feature instances to rely on any kind of session are used (database/files/redis).
 
+Add the following in `application/config/hooks.php`:
 ```php
 $hook['pre_system'][] = array(
   'class' => 'MY_Preserve_post',
